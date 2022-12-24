@@ -16,6 +16,7 @@ from random import randint
 def range_char(start, stop):
     return (chr(n) for n in range(ord(start), ord(stop) + 1))
 
+#biblioteka string - mozna zaimportowac te zbiory
 small_letters = list(range_char('a', 'z'))
 big_letters = list(range_char('A', 'Z'))
 special_signs = list(range_char('!', '/')) + list(range_char(':', '@')) + list(range_char('{', '~'))
@@ -38,7 +39,8 @@ opt1 = False
 opt2 = False
 length = user_input3
 
-# obsługa błędów i 
+# obsługa błędów 
+# zrobić na while
 if user_input1.lower() in yes_choices:
     opt1 = True
 if user_input2.lower() in yes_choices:
@@ -63,8 +65,11 @@ print(signs_to_be_used)
 
 #wygeneruj minimalne spełnienie zasady , tu jest git
 
+# mozna robic to na stringu i appendowac
 password = list(range(0, user_input3))
 
+#pozbyc sie ponizej
+#funkcja walidacyjna + funkcja generujaca haslo
 #początek łańcucha z minimalnymi zasadami
 password[0] = small_letters[randint(0, len(small_letters))] 
 password[1] = big_letters[randint(0, len(big_letters))]
@@ -72,9 +77,11 @@ password[2] = special_signs[randint(0, len(special_signs))] if opt1 else signs_t
 password[3] = digits[randint(0, len(digits))] if opt1 else signs_to_be_used[randint(0, len(signs_to_be_used))]
 
 #reszta znaków bardziej losowo
-for _ in range(4, user_input3):
-    password[_] = signs_to_be_used[randint(0, len(signs_to_be_used))]
+#funkcja choice z modulu random
+for _ in range(user_input3-4):
+    password.append(signs_to_be_used[randint(0, len(signs_to_be_used))])
 
+# tego mozna by sie pozbyc gdyby wyzej byl string
 finalPasswod = ''.join(password)
 
 print(f'Twoje wygenerowane hasło o długości {len(password)} to: {finalPasswod}')
