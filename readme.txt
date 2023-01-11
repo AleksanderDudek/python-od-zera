@@ -35,3 +35,5 @@ pip freeze > requirements.txt. <<< requirments.txt to jest konwencja, to jest pl
 Python standard library https://docs.python.org/3/library/ 
 
 Zadanie domowe 1 - doczytać https://treyhunner.com/2019/05/python-builtins-worth-learning/ 
+
+ciekawym pomyslem jest budowanie personalizowanych rankomatow scrapujac dane z neta + wrzucenie google ads + ceneo
