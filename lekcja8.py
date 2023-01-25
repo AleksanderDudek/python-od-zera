@@ -67,18 +67,26 @@ class BankAccount:
                     for currency in r:
                         currencies[currency['code']] = currency['mid']
 
+                    # z PLN na obcą lub z obcej na obca 
                     if newCurrencyName != 'PLN':
-                        # tutaj cos sie pieprzy z konwersja
-                        self.__balance = self.__balance * currencies[newCurrencyName]
-                        self.__currencyName == newCurrencyName
+                        if self.__currencyName == 'PLN':
+                            self.__balance = self.__balance * currencies[newCurrencyName]
+                            self.__currencyName = newCurrencyName
+                        else:
+                            # najpierw z powrotem na zlotowki 
+                            self.__balance = self.__balance / currencies[self.__currencyName]
+                            self.__currencyName = newCurrencyName
+
+                            # potem wedlug przelicznika 
+                            self.__balance = self.__balance * currencies[newCurrencyName]
+                    # z obcej na PLN 
                     else:
                         
                         # najpierw z powrotem na zlotowki 
                         self.__balance = self.__balance / currencies[self.__currencyName]
-                        self.__currencyName == newCurrencyName
+                        self.__currencyName = newCurrencyName
 
-                        # potem wedlug przelicznika 
-                        self.__balance = self.__balance * currencies[newCurrencyName]
+              
                 except:
                     print('Cos sie spsulo')
             except:
@@ -111,8 +119,11 @@ print(account)
 account.convert_account('PLN')
 print(account)
 
-# account.convert_account('USD')
-# account.convert_account('EUR')
+account.convert_account('USD')
+print(account)
+
+account.convert_account('EUR')
+print(account)
 
 
 
